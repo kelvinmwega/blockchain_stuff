@@ -1,0 +1,26 @@
+query selectLPOs {
+  description: "Select all lpos"
+  statement:
+      SELECT org.ibm.supplychain.Lpo
+}
+
+query selectLPOById {
+  description: "Select LPO by ID"
+  statement:
+      SELECT org.ibm.supplychain.Lpo
+          WHERE (lpoId ==_$lpoId)
+}
+
+query selectCredit {
+  description: "Select all credit requests"
+  statement:
+      SELECT org.ibm.supplychain.Credit
+}
+
+query selectCreditWithId {
+  description: "Select Credit By ID"
+  statement:
+      SELECT org.ibm.supplychain.Credit
+      WHERE (creditId == _$creditId)
+          
+}

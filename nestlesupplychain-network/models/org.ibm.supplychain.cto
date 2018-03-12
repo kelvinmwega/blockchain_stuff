@@ -1,0 +1,71 @@
+/**
+ * Write your model definitions here
+ */
+
+namespace org.ibm.supplychain
+
+asset Credit identified by creditId {
+  o String creditId
+  o String lpoNo
+  o String product
+  o String amount
+  o String quantity
+  o String timestamp
+  o String status
+
+  --> Banker banker
+  --> Distributer dis
+  --> Manufucturer manu
+}
+
+asset Lpo identified by lpoId {
+  o String lpoId
+  o String product
+  o String amount
+  o String quantity
+  o String timestamp
+  o String status
+  o String client
+
+  --> Distributer distributer
+  --> Manufucturer manufucturer
+  --> Shipper shipper
+}
+
+concept Address {
+  o String city optional
+  o String country
+  o String street optional
+  o String zip optional
+}
+
+abstract participant Business identified by email {
+  o String email
+  o Address address
+  o Double accountBalance
+}
+
+participant Banker extends Business {  
+}
+
+participant Distributer extends Business {
+}
+
+participant Manufucturer extends Business {
+}
+
+participant Shipper extends Business {
+}
+
+transaction  processCredit {
+  --> Credit cred
+  --> Distributer dist
+}
+
+transaction processShipment {
+  --> Lpo lpo
+  --> Distributer distrib
+}
+
+transaction SetupDemo {
+}
