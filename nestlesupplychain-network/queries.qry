@@ -24,3 +24,10 @@ query selectCreditWithId {
       WHERE (creditId == _$creditId)
           
 }
+
+query selectCreditWithLpoId{
+description: "Select Credit By LPO ID"
+  statement:
+      SELECT org.ibm.supplychain.Credit
+      WHERE (lpoNo == _$lpoNo)
+}
